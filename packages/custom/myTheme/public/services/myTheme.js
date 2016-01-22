@@ -8,8 +8,6 @@ angular.module('mean.myTheme').factory('MyTheme', [
   }
 ]);
 
-'use strict';
-
 angular.module('mean.myTheme').factory('Menus', ['$resource',
   function($resource) {
     return $resource('api/hunter/menu/:name', {

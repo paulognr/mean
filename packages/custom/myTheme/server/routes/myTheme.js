@@ -15,8 +15,8 @@ module.exports = function(MyTheme, app, auth, database) {
                 itemsRes = [],
                 tmpMenu;
 
-            var items = mean.menus.get({
-                roles: roles,
+            var items = MyTheme.menus.get({
+                roles: userRoles,
                 menu: menu,
                 defaultMenu: defaultMenu.map(function(item) {
                     return JSON.parse(item);
@@ -25,19 +25,16 @@ module.exports = function(MyTheme, app, auth, database) {
 
             items.forEach(function(item) {
                 item.roles.forEach(function(menuRole){
-                    console.log("User has rule? " + menuRole)
                     if(userHasRole(menuRole)){
-                        console.log('tem');
                         itemsRes.push(item);
                     }
                 });
             });
 
-            function userHasRole(userRole){
+            function userHasRole(userRole) {
                 var hasRole = false;
-                for(var i in userRoles){
-                    console.log('User Roles: ' + userRoles[i]);
-                    if(userRole === userRoles[i]){
+                for (var i in userRoles) {
+                    if (userRole === userRoles[i]) {
                         hasRole = true;
                         break;
                     }
