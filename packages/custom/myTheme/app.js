@@ -33,7 +33,7 @@ MyTheme.register(function(app, auth, database, system) {
 
   MyTheme.menus.add({
     title: 'User',
-    link: 'User',
+    link: 'user',
     roles: ['user'],
     menu: 'myMain'
   });
