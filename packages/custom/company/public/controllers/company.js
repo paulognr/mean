@@ -7,5 +7,11 @@ angular.module('mean.company').controller('CompanyController', ['$scope', 'Globa
     $scope.package = {
       name: 'company'
     };
+
+    $scope.find = function() {
+      Company.query(function(companies) {
+        $scope.companies = companies;
+      });
+    };
   }
 ]);

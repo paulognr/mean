@@ -1,0 +1,8 @@
+<section data-ng-controller="CompanyController" data-ng-init="find()">
+  <ul class="companies unstyled">
+    <li data-ng-repeat="company in companies">
+      <span>{{company.title}}</span>
+    </li>
+  </ul>
+  <h1 data-ng-hide="!companies || companies.length">No companies yet. <br> Why don't you <a href="/company/create">Create One</a>?</h1>
+</section>
