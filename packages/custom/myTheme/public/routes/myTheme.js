@@ -6,7 +6,10 @@ angular.module('mean.myTheme').config(['$viewPathProvider', '$stateProvider',
 
     $stateProvider.state('user', {
       url: '/user',
-      templateUrl: 'myTheme/views/user.html'
+      templateUrl: 'myTheme/views/user.html',
+      requiredCircles : {
+        circles: ['user']
+      }
     })
   }
 ]);

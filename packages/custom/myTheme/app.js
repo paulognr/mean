@@ -25,30 +25,9 @@ MyTheme.register(function(app, auth, database, system) {
   });
 
   MyTheme.menus.add({
-    title: 'Company',
-    link: 'Company',
-    roles: ['company'],
-    menu: 'myMain'
-  });
-
-  MyTheme.menus.add({
     title: 'User',
     link: 'user',
     roles: ['user'],
-    menu: 'myMain'
-  });
-
-  MyTheme.menus.add({
-    title: 'Anonymous',
-    link: 'Anonymous',
-    roles: ['anonymous'],
-    menu: 'myMain'
-  });
-
-  MyTheme.menus.add({
-    title: 'Authenticated',
-    link: 'Authenticated',
-    roles: ['authenticated'],
     menu: 'myMain'
   });
 
