@@ -15,6 +15,12 @@ angular.module('mean.company').config(['$stateProvider',
         circles: ['authenticated'],
         denyState: 'auth.login'
       }
+    }).state('create company', {
+      url: '/companies/create',
+      templateUrl: '/company/views/create.html',
+      requiredCircles : {
+        circles: ['company']
+      }
     }).state('company by id', {
       url: '/companies/:companyId',
       templateUrl: '/company/views/view.html',

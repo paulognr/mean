@@ -14,7 +14,9 @@ module.exports = function(Company, app, auth, database) {
 
   var companies = require('../controllers/company')(Company);
 
-  app.route('/api/companies').get(companies.all);
+  app.route('/api/companies')
+      .get(companies.all)
+      .post(companies.create);
 
   app.route('/api/companies/:companyId').get(auth.isMongoId, companies.show);
 
