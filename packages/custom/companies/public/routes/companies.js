@@ -1,29 +1,29 @@
 'use strict';
 
-angular.module('mean.company').config(['$stateProvider',
+angular.module('mean.companies').config(['$stateProvider',
   function($stateProvider) {
-    $stateProvider.state('company', {
-      url: '/company',
-      templateUrl: '/company/views/index.html',
+    $stateProvider.state('companies', {
+      url: '/companies',
+      templateUrl: '/companies/views/index.html',
       requiredCircles : {
         circles: ['company']
       }
     }).state('all companies', {
-      url: '/companies',
-      templateUrl: '/company/views/list.html',
+      url: '/companies/list',
+      templateUrl: '/companies/views/list.html',
       requiredCircles : {
         circles: ['authenticated'],
         denyState: 'auth.login'
       }
     }).state('create company', {
       url: '/companies/create',
-      templateUrl: '/company/views/create.html',
+      templateUrl: '/companies/views/create.html',
       requiredCircles : {
         circles: ['company']
       }
     }).state('company by id', {
       url: '/companies/:companyId',
-      templateUrl: '/company/views/view.html',
+      templateUrl: '/companies/views/view.html',
       requiredCircles : {
         circles: ['authenticated'],
         denyState: 'auth.login'

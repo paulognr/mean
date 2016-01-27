@@ -2,17 +2,9 @@
 
 /* jshint -W098 */
 // The Package is past automatically as first parameter
-module.exports = function(Company, app, auth, database) {
+module.exports = function(Companies, app, auth, database) {
 
-  app.get('/company', function(req, res, next) {
-    Company.render('index', {
-      package: 'company'
-    }, function(err, html) {
-      res.send(html);
-    });
-  });
-
-  var companies = require('../controllers/company')(Company);
+  var companies = require('../controllers/companies')(Companies);
 
   app.route('/api/companies')
       .get(companies.all)
@@ -21,4 +13,12 @@ module.exports = function(Company, app, auth, database) {
   app.route('/api/companies/:companyId').get(auth.isMongoId, companies.show);
 
   app.param('companyId', companies.company);
+
+  app.get('/companies', function(req, res, next) {
+    Companies.render('index', {
+      package: 'companies'
+    }, function(err, html) {
+      res.send(html);
+    });
+  });
 };

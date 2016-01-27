@@ -1,12 +1,12 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('mean.company').controller('CompanyController', ['$scope', 'Global', 'Company',
-  function($scope, Global, Company) {
+angular.module('mean.companies').controller('CompaniesController', ['$scope', '$location', 'Global', 'Companies',
+  function($scope, $location, Global, Companies) {
     $scope.global = Global;
 
     $scope.find = function() {
-      Company.query(function(companies) {
+      Companies.query(function(companies) {
         $scope.companies = companies;
       });
     };
@@ -14,7 +14,7 @@ angular.module('mean.company').controller('CompanyController', ['$scope', 'Globa
     $scope.create = function(isValid) {
       if (isValid) {
         // $scope.article.permissions.push('test test');
-        var company = new Company($scope.company);
+        var company = new Companies($scope.company);
 
         company.$save(function(response) {
           $location.path('companies/' + response._id);

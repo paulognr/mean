@@ -1,7 +1,7 @@
 {
-  "name": "company",
+  "name": "companies",
   "version": "0.0.1",
-  "description": "Some description of company",
+  "description": "Some description of companies",
   "author": {
     "name": "mean scaffold"
   },

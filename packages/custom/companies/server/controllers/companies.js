@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
     config = require('meanio').loadConfig(),
     _ = require('lodash');
 
-module.exports = function() {
+module.exports = function(Companies) {
 
     return {
         company: function(req, res, next, id) {
@@ -35,19 +35,14 @@ module.exports = function() {
             res.json(req.company);
         },
         all: function(req, res) {
-            var query = req.acl.query('Company');
-
-            query.find().exec(function(err, companies) {
+            Company.find().exec(function(err, companies) {
                 if (err) {
                     return res.status(500).json({
                         error: 'Cannot list the company'
                     });
                 }
-
-                console.log(companies);
-                res.json(companies)
+                res.json(companies);
             });
-
         }
     };
 }

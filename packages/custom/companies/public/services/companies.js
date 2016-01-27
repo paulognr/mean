@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.company').factory('Company', ['$resource',
+angular.module('mean.companies').factory('Companies', ['$resource',
   function($resource) {
     return $resource('api/companies/:companyId', {
       companyId: '@_id'
