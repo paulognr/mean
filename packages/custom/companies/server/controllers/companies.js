@@ -34,6 +34,34 @@ module.exports = function(Companies) {
         show: function(req, res) {
             res.json(req.company);
         },
+        update: function(req, res) {
+            var company = req.company;
+
+            company = _.extend(company, req.body);
+
+            company.save(function(err) {
+                if (err) {
+                    return res.status(500).json({
+                        error: 'Cannot update the company'
+                    });
+                }
+
+                res.json(company);
+            });
+        },
+        destroy: function(req, res) {
+            var company = req.company;
+
+            company.remove(function(err) {
+                if (err) {
+                    return res.status(500).json({
+                        error: 'Cannot delete the company'
+                    });
+                }
+
+                res.json(company);
+            });
+        },
         all: function(req, res) {
             Company.find().exec(function(err, companies) {
                 if (err) {

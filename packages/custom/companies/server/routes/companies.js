@@ -8,17 +8,12 @@ module.exports = function(Companies, app, auth, database) {
 
   app.route('/api/companies')
       .get(companies.all)
-      .post(companies.create);
+      .post(auth.requiresLogin, companies.create);
 
-  app.route('/api/companies/:companyId').get(auth.isMongoId, companies.show);
+  app.route('/api/companies/:companyId')
+      .get(auth.isMongoId, companies.show)
+      .put(auth.isMongoId, auth.requiresLogin, companies.update)
+      .delete(auth.isMongoId, auth.requiresLogin, companies.destroy);
 
   app.param('companyId', companies.company);
-
-  app.get('/companies', function(req, res, next) {
-    Companies.render('index', {
-      package: 'companies'
-    }, function(err, html) {
-      res.send(html);
-    });
-  });
 };

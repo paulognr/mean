@@ -24,4 +24,10 @@ CompanySchema.path('title').validate(function(title) {
     return !!title;
 }, 'Title cannot be blank');
 
+CompanySchema.statics.load = function(id, cb) {
+    this.findOne({
+        _id: id
+    }).exec(cb);
+};
+
 mongoose.model('Company', CompanySchema);
