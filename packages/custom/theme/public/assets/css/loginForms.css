@@ -89,7 +89,8 @@ background: url("/theme/assets/img/bg.png");
     margin-bottom: 10px;
 }
 
-.main-form .input-wrapper input {
+.main-form .input-wrapper input,
+.main-form .select-wrapper select{
     width: 401px;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
@@ -100,11 +101,13 @@ background: url("/theme/assets/img/bg.png");
     line-height: 22px;
 }
 
-.main-form .input-wrapper input:invalid {
+.main-form .input-wrapper input:invalid,
+.main-form .select-wrapper select:invalid{
     box-shadow: none;
 }
 
-.main-form .input-wrapper input:focus {
+.main-form .input-wrapper input:focus,
+.main-form .select-wrapper select:focus{
     border-color: #66afe9;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
