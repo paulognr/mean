@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">HunterCO</a>
+                <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">MyApp</a>
             </div>
         </div>
 
@@ -27,9 +27,9 @@
                     <div class="pull-right" mean-translate></div>
                 </div>
                 <ul class="navbar-nav nav auth-link" ng-show="!hdrctr.hdrvars.authenticated">
-                    <li><a ui-sref='auth.register'>Join</a></li>
+                    <li><a ui-sref='auth.register' ng-show="hdrctr.hdrvars.path() != '/auth/register'">Join</a></li>
                     <li class="divider-vertical"></li>
-                    <li><a ui-sref='auth.login'>Log In</a></li>
+                    <li><a ui-sref='auth.login' ng-show="hdrctr.hdrvars.path() != '/auth/login'">Log In</a></li>
                 </ul>
                 <ul class="navbar-nav nav" ng-show="hdrctr.hdrvars.authenticated">
                     <li class="dropdown" uib-dropdown on-toggle="toggled(open)">

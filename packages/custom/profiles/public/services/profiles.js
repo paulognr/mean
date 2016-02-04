@@ -92,7 +92,7 @@ angular.module('mean.profiles').factory('Profile', [ '$rootScope', '$http', '$lo
     var Profile = new ProfileKlass();
 
     ProfileKlass.prototype.register = function(user) {
-      $http.post('/api/register', {
+      $http.post('/api/profiles/register', {
             email: user.email,
             password: user.password,
             confirmPassword: user.confirmPassword,

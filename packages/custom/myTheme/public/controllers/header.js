@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.myTheme').controller('MyHeaderController', ['$scope', '$rootScope', 'Menus', 'MeanUser', '$state',
-  function($scope, $rootScope, Menus, MeanUser, $state) {
+angular.module('mean.myTheme').controller('MyHeaderController', ['$scope', '$location', '$rootScope', 'Menus', 'MeanUser', '$state',
+  function($scope, $location, $rootScope, Menus, MeanUser, $state) {
     
     var vm = this;
 
@@ -9,7 +9,8 @@ angular.module('mean.myTheme').controller('MyHeaderController', ['$scope', '$roo
     vm.hdrvars = {
       authenticated: MeanUser.loggedin,
       user: MeanUser.user, 
-      isAdmin: MeanUser.isAdmin
+      isAdmin: MeanUser.isAdmin,
+      path: function(){return $location.path()}
     };
 
     // Default hard coded menu items for main menu
