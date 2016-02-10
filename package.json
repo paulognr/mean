@@ -1,14 +1,13 @@
 {
-  "name": "mean",
-  "description": "MEAN.io: A fullstack JavaScript framework powered by MongoDB, ExpressJS, AngularJS, NodeJS.",
+  "name": "huntercoPreview",
+  "description": "HunterCo MEAN | preview",
   "version": "0.5.5",
   "private": false,
-  "author": "Linnovate <mean@linnovate.net>",
-  "contributors": "https://github.com/linnovate/mean/graphs/contributors",
+  "author": "Paulo Junior <paulorfjunior@hotmail.com>",
   "mean": "0.5.5",
   "repository": {
     "type": "git",
-    "url": "https://github.com/linnovate/mean.git"
+    "url": "https://github.com/paulognr/mean.git"
   },
   "license": "MIT",
   "scripts": {
