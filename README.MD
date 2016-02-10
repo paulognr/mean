@@ -1,1 +1,1 @@
-https://codeship.com/projects/af9f46c0-b21b-0133-8159-7e5a34091697/status?branch=master
+<img src="https://codeship.com/projects/af9f46c0-b21b-0133-8159-7e5a34091697/status?branch=master" />
