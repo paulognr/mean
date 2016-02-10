@@ -1,9 +1,7 @@
 'use strict';
 
-angular.module('mean.profiles').factory('Profile', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q',
-  function($rootScope, $http, $location, $stateParams, $cookies, $q) {
-
-    var self;
+angular.module('mean.profiles').factory('Profile', [ '$rootScope', '$http', '$location', '$stateParams', '$cookies', '$q', 'MeanUser',
+  function($rootScope, $http, $location, $stateParams, $cookies, $q, MeanUser) {
 
     function escape(html) {
       return String(html)
@@ -19,35 +17,32 @@ angular.module('mean.profiles').factory('Profile', [ '$rootScope', '$http', '$lo
     }
 
     function ProfileKlass(){
-      this.aclDefer = $q.defer();
-      this.name = 'users';
-      this.user = {};
-      this.acl = this.aclDefer.promise;
-      this.registerForm = false;
-      this.loggedin = false;
-      this.isAdmin = false;
-      this.loginError = 0;
-      this.usernameError = null;
-      this.registerError = null;
-      this.resetpassworderror = null;
-      this.validationError = null;
-      self = this;
+      MeanUser.aclDefer = $q.defer();
+      MeanUser.name = 'users';
+      MeanUser.user = {};
+      MeanUser.acl = MeanUser.aclDefer.promise;
+      MeanUser.registerForm = false;
+      MeanUser.loggedin = false;
+      MeanUser.isAdmin = false;
+      MeanUser.loginError = 0;
+      MeanUser.usernameError = null;
+      MeanUser.registerError = null;
+      MeanUser.resetpassworderror = null;
+      MeanUser.validationError = null;
 
-      this.acl.then(function(response) {
-        self.acl = response;
-        delete self.aclDefer;
+      MeanUser.acl.then(function(response) {
+        MeanUser.acl = response;
+        delete MeanUser.aclDefer;
       });
     }
 
     ProfileKlass.prototype.onIdentity = function(response) {
-      var self = this;
-
       if (!response) {
         $http.get('/api/circles/mine').success(function(acl) {
-          if(self.aclDefer) {
-            self.aclDefer.resolve(acl);
+          if(MeanUser.aclDefer) {
+            MeanUser.aclDefer.resolve(acl);
           } else {
-            self.acl = acl;
+            MeanUser.acl = acl;
           }
         });
         return;
@@ -60,36 +55,35 @@ angular.module('mean.profiles').factory('Profile', [ '$rootScope', '$http', '$lo
       }
       destination = angular.isDefined(response.redirect) ? response.redirect : destination;
       $cookies.remove('redirect');
-      this.user = user || response;
-      this.loggedin = true;
-      this.loginError = 0;
-      this.registerError = 0;
-      this.isAdmin = this.user.roles.indexOf('admin') > -1;
+      MeanUser.user = user || response;
+      MeanUser.loggedin = true;
+      MeanUser.loginError = 0;
+      MeanUser.registerError = 0;
+      MeanUser.isAdmin = MeanUser.user.roles.indexOf('admin') > -1;
       // Add circles info to user
       $http.get('/api/circles/mine').success(function(acl) {
-        if(self.aclDefer) {
-          self.aclDefer.resolve(acl);
+        if(MeanUser.aclDefer) {
+          MeanUser.aclDefer.resolve(acl);
         } else {
-          self.acl = acl;
+          MeanUser.acl = acl;
         }
         if (destination) {
           $location.path(destination);
         }
+
         $rootScope.$emit('loggedin');
       });
     };
 
     ProfileKlass.prototype.onIdFail = function (response) {
       $location.path(response.redirect);
-      this.loginError = 'Authentication failed.';
-      this.registerError = response;
-      this.validationError = response.msg;
-      this.resetpassworderror = response.msg;
+      MeanUser.loginError = 'Authentication failed.';
+      MeanUser.registerError = response;
+      MeanUser.validationError = response.msg;
+      MeanUser.resetpassworderror = response.msg;
       $rootScope.$emit('loginfailed');
       $rootScope.$emit('registerfailed');
     };
-
-    var Profile = new ProfileKlass();
 
     ProfileKlass.prototype.register = function(user) {
       $http.post('/api/profiles/register', {
@@ -99,10 +93,10 @@ angular.module('mean.profiles').factory('Profile', [ '$rootScope', '$http', '$lo
             username: user.username,
             name: user.name
           })
-          .success(this.onIdentity.bind(this))
-          .error(this.onIdFail.bind(this));
+          .success(this.onIdentity.bind(MeanUser))
+          .error(this.onIdFail.bind(MeanUser));
     };
 
-    return Profile;
+    return MeanUser;
   }
 ]);
