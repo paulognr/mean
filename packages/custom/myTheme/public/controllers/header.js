@@ -29,8 +29,6 @@ angular.module('mean.myTheme').controller('MyHeaderController', ['$scope', '$loc
 
     // Query server for menus and check permissions
     queryMenu('myMain', defaultMainMenu);
-    queryMenu('account', []);
-
 
     $scope.isCollapsed = false;
 
@@ -57,6 +55,5 @@ angular.module('mean.myTheme').controller('MyHeaderController', ['$scope', '$loc
       queryMenu('myMain', defaultMainMenu);
       $state.go('home');
     });
-
   }
 ]);

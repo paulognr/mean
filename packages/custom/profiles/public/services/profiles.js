@@ -91,12 +91,13 @@ angular.module('mean.profiles').factory('Profile', [ '$rootScope', '$http', '$lo
             password: user.password,
             confirmPassword: user.confirmPassword,
             username: user.username,
-            name: user.name
+            name: user.name,
+            roles: [user.role]
           })
           .success(this.onIdentity.bind(MeanUser))
           .error(this.onIdFail.bind(MeanUser));
     };
 
-    return MeanUser;
+    return new ProfileKlass();
   }
 ]);

@@ -17,7 +17,7 @@ Profiles.register(function(app, auth, database) {
   Profiles.routes(app, auth, database);
 
   Profiles.aggregateAsset('css', 'profiles.css');
-    Profiles.angularDependencies(['mean.users']);
+  Profiles.angularDependencies(['mean.users']);
 
   return Profiles;
 });

@@ -17,13 +17,14 @@ module.exports = function(MeanUser) {
             req.assert('password', 'Password must be between 8-20 characters long').len(8, 20);
             req.assert('username', 'Username cannot be more than 20 characters').len(1, 20);
             req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+            req.assert('roles', 'Role is required').isLength(1);
 
             var errors = req.validationErrors();
             if (errors) {
                 return res.status(400).send(errors);
             }
 
-            user.roles = ['authenticated'];
+            user.roles.push('authenticated');
             user.save(function(err) {
                 if (err) {
                     switch (err.code) {
